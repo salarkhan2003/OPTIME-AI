@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-text-main: var(--text-main);
+  --color-text-muted: var(--text-muted);
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+  --color-warning: var(--warning);
+}
+
+@layer base {
+  :root {
+    --bg: #f8fafc;
+    --surface: #ffffff;
+    --border: #e2e8f0;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --primary: #2563eb;
+    --accent: #10b981;
+    --warning: #f59e0b;
+    --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  }
+
+  .dark {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --border: #334155;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --primary: #3b82f6;
+    --accent: #34d399;
+    --warning: #fbbf24;
+    --card-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  }
+
+  body {
+    @apply bg-bg text-text-main font-sans antialiased transition-colors duration-300;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+}
+
+@layer components {
+  .section-card {
+    @apply rounded-xl border border-border bg-surface p-6 shadow-[var(--card-shadow)] transition-all duration-300;
+  }
+
+  .section-title {
+    @apply mb-4 flex items-center justify-between text-[11px] font-bold uppercase tracking-widest text-text-muted;
+  }
+
+  .btn-primary {
+    @apply flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-bold text-white transition-all hover:opacity-90 active:scale-[0.98] shadow-lg shadow-primary/20;
+  }
+
+  .skill-tag {
+    @apply rounded border border-border bg-bg px-3 py-1.5 text-[12px] font-mono text-text-muted transition-colors;
+  }
+
+  .skill-tag-missing {
+    @apply border-accent/20 bg-accent/5 text-accent;
+  }
+}
+
+/* Custom Score Ring Animation */
+@keyframes dash {
+  from {
+    stroke-dashoffset: 326.7;
+  }
+}
+
+.score-ring {
+  animation: dash 1.5s ease-out forwards;
+}
